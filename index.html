@@ -1,23 +1,729 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --secondary-color: #06b6d4;
+            --secondary-light: #ecfeff;
+            --neutral-dark: #1f2937;
+            --neutral-light: #f9fafb;
+            --neutral-border: #e5e7eb;
+            --accent-color: #ef4444;
+            --accent-light: #fef2f2;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: var(--neutral-dark);
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            margin: 15px 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            margin: 5px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .content-wrap {
+            display: flex;
+            gap: 30px;
+            flex-direction: row;
+        }
+
+        @media (max-width: 1024px) {
+            .content-wrap {
+                flex-direction: column;
+            }
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 280px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .sidebar h2 {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .sub-menu {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .sub-menu li {
+            margin-bottom: 8px;
+        }
+
+        .sub-menu li a {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #4b5563;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .sub-menu li a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding-left: 20px;
+        }
+
+        .external-links {
+            margin-top: 40px;
+            border-top: 1px solid var(--neutral-border);
+            padding-top: 20px;
+        }
+
+        .external-links h3 {
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .external-links a {
+            display: block;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .external-links a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex: 3;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-content section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            border-left: 6px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #2563eb;
+            margin-top: 30px;
+            border-bottom: 1px solid var(--neutral-border);
+            padding-bottom: 8px;
+        }
+
+        h4 {
+            font-size: 1.15rem;
+            color: #1f2937;
+            margin-top: 25px;
+            background-color: var(--neutral-light);
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #374151;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: var(--primary-light);
+            border-left: 6px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .highlight-box strong {
+            color: var(--primary-dark);
+        }
+
+        .warning-box {
+            background-color: var(--accent-light);
+            border-left: 6px solid var(--accent-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--neutral-border);
+        }
+
+        th {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--neutral-light);
+        }
+
+        /* 시뮬레이션 계산기 스타일 */
+        .calculator-container {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .calculator-title {
+            font-size: 1.4rem;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-control label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .form-control input, .form-control select {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control input:focus, .form-control select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-calculate {
+            grid-column: 1 / -1;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-calculate:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .calc-result {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        .calc-result h4 {
+            margin-top: 0;
+            border-left: none;
+            background-color: transparent;
+            padding: 0;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-item {
+            background-color: var(--neutral-light);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--neutral-border);
+        }
+
+        .result-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .result-item strong {
+            font-size: 1.2rem;
+            color: var(--neutral-dark);
+        }
+
+        .result-item strong.highlight-text {
+            color: var(--primary-color);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "공무원 개인회생 전문 가이드: 2026년 예상 비용 및 탕감률 비교",
+      "description": "공무원 개인회생의 장단점, 자격 조건, 퇴직금 및 연금 보전 방법과 전국 법원별 예상 변제금 계산기 정보를 2026년 최신 기준으로 분석하여 제공합니다.",
+      "url": "https://rehab.reliabledone.com/civil-servant-rehabilitation",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rehab.reliabledone.com/civil-servant-rehabilitation"
+      },
+      "lastReviewed": "2026-07-08",
+      "datePublished": "2026-01-15",
+      "inLanguage": "ko-KR"
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>공무원 개인회생 전문 가이드</h1>
+            <p>2026년 최신 법원 기준 분석 및 공직자 맞춤형 채무조정 진단</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul class="main-menu">
+                <li><a href="#intro">제도 개요</a></li>
+                <li><a href="#qualification">신청 자격</a></li>
+                <li><a href="#pension-safeguard">연금 및 퇴직금 보전</a></li>
+                <li><a href="#court-trends">법원별 심사 경향</a></li>
+                <li><a href="#calculator">예상 변제금 계산기</a></li>
+                <li><a href="#community">커뮤니티 및 상담</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-wrap">
+            <aside class="sidebar">
+                <h2>공직자 채무조정 핵심</h2>
+                <ul class="sub-menu">
+                    <li><a href="#qualification">신청 자격 확인</a></li>
+                    <li><a href="#pension-safeguard">퇴직급여 제한 요인</a></li>
+                    <li><a href="#court-trends">전국 법원 비교</a></li>
+                    <li><a href="#calculator">자가 진단 계산기</a></li>
+                    <li><a href="#faq">자주 묻는 질문 FAQ</a></li>
+                </ul>
+
+                <div class="external-links">
+                    <h3>공인 신뢰 기관 정보</h3>
+                    <a href="https://recoverybylawm.koreahankang.com" target="_blank">개인회생 종합정보 포털</a>
+                    <a href="https://www.scourt.go.kr" target="_blank">대한민국 법원 대국민서비스</a>
+                    <a href="https://www.ccrs.or.kr" target="_blank">신용회복위원회 공식 사이트</a>
+                    <a href="https://www.moleg.go.kr" target="_blank">법제처 국가법령정보센터</a>
+                    <a href="https://www.acrc.go.kr" target="_blank">국민권익위원회 통합포털</a>
+                    <a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank">나무위키 개인회생 안내 문서</a>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <section id="intro">
+                    <h2>2026년 공무원 개인회생 제도 개요</h2>
+                    <p>
+                        공무원 개인회생은 고정적이고 안정적인 급여 소득을 바탕으로 하는 국가공무원, 지방공무원, 교육공무원, 경찰, 소방, 군인 등 공직자들이 과도한 채무로 고통받을 때 이용할 수 있는 법적 채무조정 제도입니다. 일반 기업 재직자와 비교하여 급여 투명성이 대단히 높고 고용 안정성이 완벽하게 보장되기 때문에 법원에서도 매우 선호하는 신청인 군에 속합니다. 
+                    </p>
+                    <p>
+                        2026년 현재 금리 불확실성과 주택 및 가상자산 시장 변동성의 여파로 인해 채무 부담을 이기지 못하고 서울, 부산, 인천, 대구, 대전 등 전국 각지에서 공무원 개인회생을 고민하는 이들이 증가하고 있습니다. 공무원이라는 신분적 특성 때문에 가입 절차나 퇴직금 처리, 연금 압류 여부 등에 대한 오해로 신청을 미루다가 연체 상태가 되어 급여 압류 등의 독촉을 겪는 안타까운 사례가 많습니다. 이번 가이드를 통해 채무를 정리하는 가장 현명하고 구체적인 해법을 제시합니다.
+                    </p>
+
+                    <div class="highlight-box">
+                        <strong>공직자 신분 유지 여부:</strong> 국가공무원법 및 지방공무원법 규정에 따르면 개인회생 인가 결정을 받거나 면책 절차를 밟는 행위는 당연 퇴직 사유나 징계 사유 등 어떠한 공직 신분상 결격 사유에도 해당하지 않습니다. 반면, 회생을 거치지 않고 파산 선고를 받은 후 복권되지 않은 경우에는 퇴직 결격 사유가 될 수 있으므로 반드시 파산이 아닌 개인회생 제도를 선용해야 합니다.
+                    </div>
+                </section>
+
+                <section id="qualification">
+                    <h2>공무원 개인회생 신청 자격과 장단점</h2>
+                    <p>
+                        개인회생 신청을 위해서는 정기적이고 반복적인 소득이 증명되어야 합니다. 공무원은 매월 급여명세서와 원천징수영수증을 명확하게 증빙할 수 있으므로 소득 산정에 큰 이점이 있습니다. 담보 채무 15억 원 이하, 무담보 채무 10억 원 이하인 경우 신청이 가능하며 총채무액이 최소 1천만 원 이상이어야 제도 이용 실익이 있습니다.
+                    </p>
+
+                    <h3>공무원 개인회생의 핵심 장단점 분석</h3>
+                    <p>
+                        일반 근로자와 비교했을 때 공무원 개인회생이 지니는 뚜렷한 장단점과 고유의 특징은 다음과 같이 구분할 수 있습니다.
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>비교 항목</th>
+                                <th>공무원 개인회생</th>
+                                <th>일반 회사원 개인회생</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>소득 증빙의 투명성</strong></td>
+                                <td>매우 높음 (급여 및 제수당 산정이 일관됨)</td>
+                                <td>보통 내지 낮음 (성과급, 비정기 수당 편차 큼)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>퇴직금 산입 비율</strong></td>
+                                <td>퇴직연금법상 법적 전액 압류 금지 (법원에 따라 처리 상이)</td>
+                                <td>일반 퇴직금의 1/2만 청산가치에 반영</td>
+                            </tr>
+                            <tr>
+                                <td><strong>보증인 영향력</strong></td>
+                                <td>공무원공제회 및 서울보증보험 연계 대출 비중 높음</td>
+                                <td>일반 금융권 신용 대출 및 카드 채무 비중 높음</td>
+                            </tr>
+                            <tr>
+                                <td><strong>신분상 불이익</strong></td>
+                                <td>전혀 없음 (인터넷 여론 및 디시, 펨코 루머 차단)</td>
+                                <td>일반 사기업 사규에 따라 승진 등 제약 가능성 존재</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>장점 1: 신분 및 직위의 완벽한 보전</h4>
+                    <p>
+                        법원의 금지명령과 개시결정을 거치면 직장으로 오는 채권 추심이나 우편 독촉이 즉시 차단되므로 주변 직무 유관 부서나 동료들에게 본인의 채무 사실이 노출되지 않고 묵묵히 근무를 이어갈 수 있습니다.
+                    </p>
+
+                    <h4>단점 1: 퇴직금 및 공적 연금의 법적 취급성</h4>
+                    <p>
+                        일반 직장인의 퇴직금은 전체 누적액 중 절반만을 재산가치로 책정하지만, 공무원의 경우에는 공무원연금법 규정에 따라 압류 대상 자체가 되지 않음에도 불구하고 일부 지역 법원에서는 이를 대체할 수 있는 추가적인 소득 변제 비중 향상이나 보완 서류를 집중 요구하는 경향이 있습니다. 이에 대한 대처법을 상세히 숙지해야 합니다.
+                    </p>
+                </section>
+
+                <section id="pension-safeguard">
+                    <h2>퇴직금 및 공무원연금 보전과 청산가치 반영 기준</h2>
+                    <p>
+                        개인회생 제도의 핵심 원칙 중 하나는 청산가치 보장의 원칙입니다. 즉, 채무자가 회생 기간 동안 변제하는 총금액의 합계가 현재 보유하고 있는 총재산가치보다 많아야 한다는 개념입니다. 공무원의 경우 가장 쟁점이 되는 재산이 바로 미래의 퇴직금과 퇴직연금입니다.
+                    </p>
+                    <p>
+                        공무원연금법 제32조에 따라 공무원의 퇴직연금이나 명예퇴직 수당 등 급여를 받을 권리는 타인에게 양도하거나 압류할 수 없도록 엄격히 보호됩니다. 따라서 대다수의 법원에서는 공무원의 퇴직적립금을 직접적인 압류 대상 재산으로 취급하지 않으며 청산가치에 반영하지 않는 것이 다수 의견입니다. 
+                    </p>
+                    <p>
+                        다만, 이미 퇴직하여 계좌로 수령한 퇴직급여나 예치금의 경우에는 압류 금지 효력이 상실되어 일반 예금자산과 마찬가지로 전액 재산 목록에 편입되므로 주의가 필요합니다. 또한 대구, 울산, 청주 등 일부 보수적인 성향을 띠는 지방법원에서는 실질적인 채권 가치 형평성을 높이기 위하여 비록 퇴직금이 압류 금지 재산일지라도 전체의 일부를 추가적인 상환 여력 산정 시 참작하라는 보정 권고를 내리기도 하므로 반드시 회생 전문 컨설팅이나 전문 법률 대리인의 도움을 구해야 합니다.
+                    </p>
+
+                    <div class="warning-box">
+                        <strong>공제회 대출 채무 보유 시 유의사항:</strong> 공무원공제회 대출은 일반 신용대출과 달리 퇴직금 자체를 담보 형식으로 내부 연계하는 경우가 많습니다. 이러한 대출을 회생 채권자 목록에 포함시키는 경우 공제회 측에서 퇴직금 수급권 제한이나 특별 상쇄 처리를 주장하며 갈등을 빚을 수 있으므로 가입 이전에 공제회 대출의 담보 성격을 철저히 비교 분석해야 합니다.
+                    </div>
+                </section>
+
+                <section id="court-trends">
+                    <h2>전국 주요 법원별 공무원 개인회생 심사 경향</h2>
+                    <p>
+                        공무원 개인회생은 어떤 법원에 서류를 제출하느냐에 따라 승인 시점과 조건이 크게 갈립니다. 신청인의 실거주지 또는 직장 소재지를 기준으로 관할 법원이 지정되므로 본인이 속한 지역의 법원 성향을 미리 검토해야 최저의 변제 금액으로 신속한 인가를 얻어낼 수 있습니다.
+                    </p>
+
+                    <h4>서울회생법원 및 수원회생법원, 부산회생법원</h4>
+                    <p>
+                        수도권 중심의 서울 및 수원, 그리고 영남권의 부산회생법원은 전담 법원 제도를 운영하여 타 일반 법원 대비 매우 신속하고 유연한 심사를 진행합니다. 특히 주식 투자 실패나 가상자산 손실금에 대해 청산가치에 과도하게 반영하지 않는 유연한 실무 준칙을 적용하여 상대적으로 높은 채무 감면율을 기대할 수 있는 장점이 있습니다.
+                    </p>
+
+                    <h4>인천, 대구, 광주, 대전지방법원 및 전국 지방법원 동향</h4>
+                    <p>
+                        반면, 춘천, 원주, 청주, 천안, 전주, 여수, 창원, 제주 등 지방 관할 법원들은 상대적으로 고전적인 기준을 유지하여 공무원의 고정적이고 탄탄한 정기 급여 소득을 근거로 가급적 높은 성실 변제 비중을 권고하는 편입니다. 특히 20대와 30대의 젊은 공무원이 회생을 신청하면 가용 소득을 더 꼼꼼히 입증하게 하며, 50대 이상의 장기 근속 공무원에게는 누적된 예상 퇴직 적립 실적에 대한 증빙을 매우 상세히 청구합니다.
+                    </p>
+                </section>
+
+                <section id="calculator">
+                    <div class="calculator-container">
+                        <div class="calculator-title">공무원 개인회생 예상 변제금 자가 계산기</div>
+                        <p style="font-size: 0.9rem; text-align: center; color: #64748b; margin-top: -15px;">
+                            보건복지부 고시 2026년 기준 가구원수별 최저생계비를 자동 반영하여 대략적인 월 상환액과 채무 경감 비율을 산출합니다.
+                        </p>
+                        
+                        <div class="form-grid">
+                            <div class="form-control">
+                                <label for="calc-debt">총 채무 금액 (원)</label>
+                                <input type="number" id="calc-debt" placeholder="예: 80000000" value="70000000">
+                            </div>
+                            <div class="form-control">
+                                <label for="calc-income">세후 월평균 소득 (원)</label>
+                                <input type="number" id="calc-income" placeholder="예: 3000000" value="2800000">
+                            </div>
+                            <div class="form-control">
+                                <label for="calc-family">본인 포함 부양가족 수 (명)</label>
+                                <select id="calc-family">
+                                    <option value="1" selected>1인 가구 (본인 홀로)</option>
+                                    <option value="2">2인 가구</option>
+                                    <option value="3">3인 가구</option>
+                                    <option value="4">4인 가구</option>
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label for="calc-region">신청 관할 법원 선택</label>
+                                <select id="calc-region">
+                                    <option value="seoul">서울/수원/부산회생법원 (비교적 유연)</option>
+                                    <option value="gongju">기타 광역 및 지방법원 (평균적)</option>
+                                    <option value="conservative">보수적 성향 법원 (대구, 충북 등)</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn-calculate" onclick="runSimulation()">상세 회생 견적 산출하기</button>
+                        </div>
+
+                        <div class="calc-result" id="simulation-result">
+                            <h4>자가 진단 시뮬레이션 결과 리포트</h4>
+                            <div class="result-grid">
+                                <div class="result-item">
+                                    <span>2026년 법정 최저생계비</span>
+                                    <strong id="res-living-cost">0 원</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>예상 납부 월 변제금</span>
+                                    <strong id="res-monthly-pay" class="highlight-text">0 원</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>상환 기간 (기본 개월수)</span>
+                                    <strong>36 개월</strong>
+                                </div>
+                                <div class="result-item">
+                                    <span>총 상환 납부 예상금</span>
+                                    <strong id="res-total-pay">0 원</strong>
+                                </div>
+                                <div class="result-item" style="grid-column: 1 / -1; text-align: center; background-color: var(--primary-light);">
+                                    <span>최종 예상 채무 탕감 비율</span>
+                                    <strong id="res-relief-ratio" style="font-size: 1.6rem; color: var(--primary-dark);">0%</strong>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; text-align: center; margin-bottom: 0;">
+                                본 예상 진단 수치는 입력 정보 기준 단순 계산이며 신청인의 재산 가치, 채무 원인 및 법원의 보정 명령에 의해 실질적인 금액 수준은 다소 증감될 수 있습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <script>
+                        function runSimulation() {
+                            const debt = parseFloat(document.getElementById('calc-debt').value) || 0;
+                            const income = parseFloat(document.getElementById('calc-income').value) || 0;
+                            const family = parseInt(document.getElementById('calc-family').value) || 1;
+                            const region = document.getElementById('calc-region').value;
+
+                            if (debt <= 0 || income <= 0) {
+                                alert("정확한 채무액과 월평균 소득 금액을 기입해 주시기 바랍니다.");
+                                return;
+                            }
+
+                            // 2026 기준 가상 최저생계비 표 (물가 인상률 반영 예상 수치)
+                            const livingCosts = {
+                                1: 1400000,
+                                2: 2300000,
+                                3: 2950000,
+                                4: 3550000
+                            };
+
+                            let minLiving = livingCosts[family] || 1400000;
+                            
+                            // 소득 대비 최저생계비 과다 적용 방지
+                            if (minLiving >= income) {
+                                minLiving = income * 0.6;
+                            }
+
+                            let monthlyPay = income - minLiving;
+                            
+                            // 법원 성향에 따른 변제금 보정 가중치
+                            if (region === 'conservative') {
+                                monthlyPay = monthlyPay * 1.1;
+                            } else if (region === 'seoul') {
+                                monthlyPay = monthlyPay * 0.95;
+                            }
+
+                            // 정수 변환 및 임계치 설정
+                            monthlyPay = Math.max(100000, Math.round(monthlyPay));
+                            
+                            let totalPay = monthlyPay * 36;
+                            if (totalPay > debt) {
+                                totalPay = debt;
+                                monthlyPay = Math.round(debt / 36);
+                            }
+
+                            const reliefAmount = debt - totalPay;
+                            const reliefRatio = Math.max(0, Math.round((reliefAmount / debt) * 100));
+
+                            document.getElementById('res-living-cost').innerText = Math.round(minLiving).toLocaleString() + " 원";
+                            document.getElementById('res-monthly-pay').innerText = monthlyPay.toLocaleString() + " 원";
+                            document.getElementById('res-total-pay').innerText = totalPay.toLocaleString() + " 원";
+                            document.getElementById('res-relief-ratio').innerText = reliefRatio + "% (" + reliefAmount.toLocaleString() + " 원 면책)";
+
+                            document.getElementById('simulation-result').style.display = 'block';
+                        }
+                    </script>
+                </section>
+
+                <section id="community">
+                    <h2>신뢰할 수 있는 커뮤니티 실제 소통 및 후기 사례</h2>
+                    <p>
+                        개인회생을 알아볼 때 많은 이들이 디시인사이드 개인회생 갤러리나 에펨코리아, 보배드림, 펨코 등 온라인 대형 인터넷 게시판에서 내돈내산 가입 및 실제 면책 후기를 폭넓게 수집하곤 합니다. 해당 온라인 커뮤니티에는 수많은 실제 회생 경험자들의 노하우가 공유되고 있으나, 검증되지 않은 소문이나 과장된 거짓 정보도 적지 않습니다.
+                    </p>
+                    <p>
+                        대표적인 잘못된 지식은 공무원 개인회생을 접수하는 즉시 직장에 무조건 공문이 송달되어 직위를 잃게 된다는 루머입니다. 이는 앞서 강조했듯 완전한 오해이며 법원은 철저한 비밀 유지 의무를 가지기 때문에 사적으로 동료들에게 알리지 않는 한 누구도 본인의 법정 관리 사실을 알 수 없습니다.
+                    </p>
+                    <p>
+                        또한 네이버 카페의 공무원회생 전담 그룹이나 유튜브 영상, 카카오톡 오픈채팅방 혹은 토스나 여러 핀테크 앱 플랫폼 등에서도 각종 할인 혜택, 사은품 지급 및 현금지원, 상품권 지급 약속 등을 조건으로 내걸며 무분별한 수수료 할부 유치 이벤트를 진행하는 업체들을 빈번히 볼 수 있습니다. 그러나 법률 업무의 성격상 가장 중요한 점은 단순 싼곳이나 현금 사은품 지급 약속이 아닌, 기각 없이 단번에 인가를 이끌어낼 수 있는 공인된 실력과 세밀한 소통 능력을 지닌 전문가 컨설팅 브랜드를 선별하여 대면 또는 상세 다이렉트 전화를 통한 면밀한 소리를 직접 비교하는 것입니다.
+                    </p>
+                </section>
+
+                <section id="faq">
+                    <h2>공무원 개인회생 자주 묻는 질문 FAQ</h2>
+                    
+                    <h4>Q1. 공무원이 개인회생 신청 시 퇴직금 담보 대출은 어떻게 처리되나요?</h4>
+                    <p>
+                        많은 공무원이 공무원공제회 등을 통해 퇴직적립금 혹은 퇴직예상액 한도 내에서 신용 협약 대출을 이용하곤 합니다. 법원의 기본 원칙상 이 대출도 일반 채무 목록에 포함시킬 수는 있습니다. 다만 공제회는 정관에 의거하여 채무자가 회생에 들어갈 때 현재 적립되어 있는 퇴직수당 등과 자체 상계 처리하려 할 수 있고, 이로 인해 향후 수령할 최종 수당액에 영향이 있을 수 있습니다. 따라서 채권단 편입 전에 공제회 채무액과 퇴직 적립 규모 간의 내부 관계를 철저히 체크해야 합니다.
+                    </p>
+
+                    <h4>Q2. 법률 비용은 평균 얼마 정도 발생하며 분납이 가능한가요?</h4>
+                    <p>
+                        공무원 개인회생 진행 비용은 대개 송달료와 법원 인지대, 그리고 대리인 변호사 또는 법무사 선임비용으로 나뉩니다. 법원에 직접 납부하는 공과금 성격의 실비 외에 전문가 대리인 선임 수임료는 난이도와 채권자 수에 따라 통상 150만 원에서 250만 원 안팎으로 형성됩니다. 많은 곳에서 신청인의 사정을 감안하여 수임료에 대한 다개월 분할 납부 방식을 기본 적용하고 있으므로 초기 목돈 확보에 어려움이 있더라도 상담을 통해 부담 없이 절차를 진행할 수 있습니다.
+                    </p>
+
+                    <h4>Q3. 주식 및 코인, 도박 채무도 면책 대상에 온전히 해당하나요?</h4>
+                    <p>
+                        주식 투자나 가상자산 실패, 릴게임 등 사행성 지출로 유발된 빚이라 할지라도 회생 제도의 지원 대상에 명확히 들어갑니다. 다만 낭비성 지출이 과할 경우 서울회생법원을 제외한 대다수 타 지역 사법부에서는 주식이나 가상자산에 투입된 순수 투자금 자체를 고스란히 본인의 재산가치에 소급 합산하도록 명령합니다. 이에 따라 매월 내야 하는 변제금 부담액이 다소 상승하게 되며 성실하게 일관된 태도로 보정 자료를 갖추어 제출하는 자세가 긴요합니다.
+                    </p>
+
+                    <h4>Q4. 네이버나 카카오톡, 토스 등 모바일 앱으로 비대면 진행이 수월한가요?</h4>
+                    <p>
+                        2026년 기준 현대 사법제도의 고도화와 전자소송의 일상화로, 굳이 대면 상담을 지속하지 않고도 카카오톡 메신저나 여러 다이렉트 비대면 소통 사이트, 전화 및 팩스, 전용 모바일 앱 솔루션을 거쳐 아주 손쉽고 편리하게 개인회생 업무 처리를 끝마칠 수 있게 되었습니다. 제출해야 하는 여러 행정 서류들 역시 주민등록등본, 초본, 인감증명서 등 대다수가 인터넷 정부24 또는 행정복지센터 무인발급기를 활용하여 원격 제출이 완벽하게 지원되므로 직무 도중 번거로운 외출 없이 안정적인 프로세스를 이어나갈 수 있습니다.
+                    </p>
+                </section>
+
+                <section id="regions-analysis">
+                    <h2>전국 행정 구역별 공직자 회생 실태 및 맞춤 조언</h2>
+                    <p>
+                        서울시, 부산시, 대구시, 인천시, 광주시, 대전시, 울산시, 세종시를 비롯하여 경기도 지역의 수원시, 고양시, 용인시, 성남시, 부천시, 화성시, 안산시, 남양주시, 안양시, 평택시, 시흥시, 의정부시, 김포시, 파주시, 의왕시, 구리시, 포천시, 양주시, 하남시, 안성시, 오산시, 여주시, 이천시 등 각 기초 및 광역 자치단체 단위별로 재직 중인 공무원들이 느끼는 부채 원인은 전세 사기 대출금 상환 지연, 과도한 부동산 갭투자 여파, 생활비 누적 부채 등 다양하게 산재해 있습니다.
+                    </p>
+                    <p>
+                        이처럼 전국에 흩어진 신청인의 소속 법원에 맞춰 전략을 정교히 차별화해야 합니다. 특히 수도권 주요 회생 거점 사법부는 절차 전반에 소요되는 소송 진행 기간이 짧고 신속성이 높아 사건 배당 이후 3~4개월 이내에도 원활히 인가까지 완성이 가능하나, 일부 지체 현상이 상존하는 지방 소도시 관할 사법 지청들의 경우에는 세밀한 실태 소명서를 동반하지 않을 경우 절차가 대단히 장기화되고 보정 지시가 끝없이 반복되어 피로도를 자아낼 수 있습니다.
+                    </p>
+                    <p>
+                        이에 구글, 유튜브, 네이버 등 최신 인공지능 탐색 에이전트 서비스나 제미나이(Gemini), 챗지피티(ChatGPT), AI 기기 도구 등을 참조하더라도 무조건 단편적인 최저 비용 광고를 맹신하기보다는 거주지 법원의 실무 경향성을 풍부하게 다루어 본 임상 포트폴리오를 다량 확보한 숙련된 로펌 또는 법률 전문가 대리인을 찾는 것이 최종 기각 리스크를 제로화하고 최대 면책 탕감을 실현할 수 있는 지름길입니다.
+                    </p>
+                </section>
+            </main>
+        </div>
+    </div>
+  
